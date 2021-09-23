@@ -5,7 +5,10 @@ Este es un software que sirve para manejar el inventario en un taller de costura
 Tener instalado Tkinter, pymysql y Python 3.7 >.  
 Puede instalar estas librerias usando el siguiente comando:
 
-pip install -r requirements.txt  
+```
+pip install -r requirements.txt    
+```
+
 Tener el servidor de MySql activo, por defecto la conexión en el software es 'localhost', tiene como usuario 'admin' y contraseña '1234', tambien el nombre de la base de datos es 'tallercostura', todos estos aspectos se pueden modificar en el constructor de 'DataBase' en el archivo BB.py.  
 En mi caso inicie el servidor con wampserver y en PhpMyAdmin agregue la tabla y al usuario con sus privilegios.  
 ### base de datos
