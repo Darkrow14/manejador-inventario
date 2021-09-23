@@ -11,6 +11,19 @@ class DataBase:
         )
         self.cursor = self.conecction.cursor()
 
+    def create_tables(self):
+        tablas = [
+            'CREATE TABLE IF NOT EXISTS `clientes` ( `DNI` int(11) NOT NULL, `NOMBRE(S)` varchar(50) COLLATE latin1_spanish_ci NOT NULL, `APELLIDOS` varchar(50) COLLATE latin1_spanish_ci NOT NULL, `DIRECCION` varchar(50) COLLATE latin1_spanish_ci NOT NULL, `TELEFONO` int(11) NOT NULL, `ACTIVO` varchar(1) COLLATE latin1_spanish_ci NOT NULL, PRIMARY KEY (`DNI`) ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT="Tabla que contiene a los clientes"',
+            'CREATE TABLE IF NOT EXISTS `equipos` ( `NUMEQ` int(10) NOT NULL AUTO_INCREMENT, `CANTEMP` int(11) NOT NULL, `ESPECIALIDAD` varchar(20) COLLATE latin1_spanish_ci NOT NULL, PRIMARY KEY (`NUMEQ`) ) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci',
+            'CREATE TABLE IF NOT EXISTS `facturas` ( `ID_FACTURA` int(11) NOT NULL AUTO_INCREMENT, `NUMPED` int(11) NOT NULL, `DNI` int(11) NOT NULL, `PRECIO` float NOT NULL, `FORMA_DE_PAGO` varchar(25) COLLATE latin1_spanish_ci NOT NULL, PRIMARY KEY (`ID_FACTURA`) ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci',
+            'CREATE TABLE IF NOT EXISTS `pedidos` ( `NUMPED` int(11) NOT NULL AUTO_INCREMENT, `DNI` int(11) NOT NULL, `DESCRIPCION` varchar(50) COLLATE latin1_spanish_ci NOT NULL, `MODELO` varchar(20) COLLATE latin1_spanish_ci NOT NULL, `PARA` varchar(10) COLLATE latin1_spanish_ci NOT NULL, `MEDIDAS` varchar(50) COLLATE latin1_spanish_ci NOT NULL, `ACTIVO` varchar(1) COLLATE latin1_spanish_ci NOT NULL, PRIMARY KEY (`NUMPED`) ) ENGINE=MyISAM AUTO_INCREMENT=12336 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci',
+            'CREATE TABLE IF NOT EXISTS `produccion` ( `ID_PRODUCCION` int(10) NOT NULL AUTO_INCREMENT, `NUMPED` int(11) NOT NULL, `NUMENCARGA` int(11) NOT NULL, `NUMEQUI` int(11) NOT NULL, `MAQUINA` varchar(25) COLLATE latin1_spanish_ci NOT NULL, PRIMARY KEY (`ID_PRODUCCION`) ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci',
+            'CREATE TABLE IF NOT EXISTS `telas` ( `CODIGOT` int(11) NOT NULL AUTO_INCREMENT, `TIPO` varchar(20) COLLATE latin1_spanish_ci NOT NULL, `METROS` float NOT NULL, `PRECIO_BASE` float NOT NULL, `ACTIVO` varchar(1) COLLATE latin1_spanish_ci NOT NULL, PRIMARY KEY (`CODIGOT`) ) ENGINE=MyISAM AUTO_INCREMENT=135 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci'
+        ]
+
+        for instruction in tablas:
+            self.cursor.execute(instruction)
+
     def select_facturas(self):
         sql = "SELECT pedidos.NUMPED FROM pedidos, clientes WHERE pedidos.DNI = clientes.DNI"
 
