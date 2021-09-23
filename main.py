@@ -1001,7 +1001,8 @@ class App(Tk):
                 lista1.append(str(valor[0]))
             numPedido["values"] = lista1
         else:
-            self.erase(windowProduccion, window)
+            messagebox.showwarning(message="No hay clientes ingresados, ingrese alguno", title="Información")
+            self.erase(windowFactura)
             breakpoint()
 
         dniL = Label(windowFactura, text="DNI del cliente:")
